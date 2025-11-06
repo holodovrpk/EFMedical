@@ -1,0 +1,97 @@
+﻿<Page x:Class="EFMedical.Pages.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="HomePage">
+
+    <!-- Основная сетка страницы -->
+    <Grid Background="#f8f9fb">
+        <Grid.RowDefinitions>
+            <!-- Первая строка — заголовок -->
+            <RowDefinition Height="Auto"/>
+            <!-- Вторая строка — содержимое (карточки) -->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок страницы -->
+        <TextBlock Text="Главная панель"
+                   FontSize="28"
+                   FontWeight="Bold"
+                   Foreground="#333"
+                   Margin="20,20,0,10"/>
+
+        <!-- Основная область — три карточки с количеством врачей, пациентов и приёмов -->
+        <UniformGrid Grid.Row="1"
+                     Columns="3"
+                     Margin="20,10,20,20"
+                     HorizontalAlignment="Stretch"
+                     VerticalAlignment="Top">
+
+            <!-- ==== Карточка 1: Врачи ==== -->
+            <Border Background="White"
+                    CornerRadius="15"
+                    Margin="10"
+                    Padding="20"
+                    BorderBrush="#d0d4dc"
+                    BorderThickness="1">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <!-- Заголовок карточки -->
+                    <TextBlock Text="ВРАЧЕЙ"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Foreground="#2d89ef" />
+                    <!-- Текст с количеством врачей (заполняется из кода) -->
+                    <TextBlock x:Name="DoctorsCountText"
+                               Text="0"
+                               FontSize="48"
+                               FontWeight="Bold"
+                               Margin="10,20,10,0" />
+                </StackPanel>
+            </Border>
+
+            <!-- ==== Карточка 2: Пациенты ==== -->
+            <Border Background="White"
+                    CornerRadius="15"
+                    Margin="10"
+                    Padding="20"
+                    BorderBrush="#d0d4dc"
+                    BorderThickness="1">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <!-- Заголовок карточки -->
+                    <TextBlock Text="ПАЦИЕНТОВ"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Foreground="#107c10" />
+                    <!-- Текст с количеством пациентов (заполняется из кода) -->
+                    <TextBlock x:Name="PatientsCountText"
+                               Text="0"
+                               FontSize="48"
+                               FontWeight="Bold"
+                               Margin="10,20,10,0" />
+                </StackPanel>
+            </Border>
+
+            <!-- ==== Карточка 3: Приёмы ==== -->
+            <Border Background="White"
+                    CornerRadius="15"
+                    Margin="10"
+                    Padding="20"
+                    BorderBrush="#d0d4dc"
+                    BorderThickness="1">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <!-- Заголовок карточки -->
+                    <TextBlock Text="ПРИЁМОВ"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Foreground="#e81123" />
+                    <!-- Текст с количеством приёмов (заполняется из кода) -->
+                    <TextBlock x:Name="AppointmentsCountText"
+                               Text="0"
+                               FontSize="48"
+                               FontWeight="Bold"
+                               Margin="10,20,10,0" />
+                </StackPanel>
+            </Border>
+
+        </UniformGrid>
+    </Grid>
+</Page>

@@ -1,0 +1,164 @@
+﻿<Page x:Class="EFMedical.Pages.AppointmentsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="AppointmentsPage">
+
+    <!-- Основная сетка страницы -->
+    <Grid Background="#f8f9fb" Margin="10">
+        <Grid.RowDefinitions>
+            <!-- Верхняя часть — таблица приёмов -->
+            <RowDefinition Height="*"/>
+            <!-- Нижняя часть — форма редактирования -->
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ===================== ТАБЛИЦА ПРИЁМОВ ===================== -->
+        <DataGrid x:Name="AppointmentsGrid"
+                  Grid.Row="0"
+                  AutoGenerateColumns="False"     
+            IsReadOnly="True"
+            VerticalAlignment="Top"
+                  Height="200"
+                  CanUserAddRows="False"
+            SelectionMode="Single"
+            SelectionChanged="AppointmentsGrid_SelectionChanged"
+            Margin="0,0,0,10">
+
+            <!-- Определяем видимые столбцы таблицы -->
+            <DataGrid.Columns>
+                <!-- Дата и время приёма -->
+                <DataGridTextColumn Header="Дата приёма"
+                                    Binding="{Binding Date}"
+                                    Width="180"/>
+                <!-- Имя врача -->
+                <DataGridTextColumn Header="Врач"
+                                    Binding="{Binding Doctor.FullName}"
+                                    Width="*"/>
+                <!-- Имя пациента -->
+                <DataGridTextColumn Header="Пациент"
+                                    Binding="{Binding Patient.FullName}"
+                                    Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- ===================== ПАНЕЛЬ РЕДАКТИРОВАНИЯ ===================== -->
+        <Border Grid.Row="1"
+                Background="White"
+                Padding="15"
+                CornerRadius="10"
+                BorderBrush="#d0d4dc"
+                BorderThickness="1">
+
+            <StackPanel>
+                <!-- Заголовок блока -->
+                <TextBlock Text="Редактирование приёма"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Margin="0,0,0,10"/>
+
+                <!-- Сетка с полями -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <!-- Левая колонка: подписи -->
+                        <ColumnDefinition Width="150"/>
+                        <!-- Правая колонка: поля ввода -->
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- Дата и время -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Врач -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Пациент -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Заметки -->
+                    </Grid.RowDefinitions>
+
+                    <!-- ====== Поле: Дата и время ====== -->
+                    <TextBlock Text="Дата и время:"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"/>
+                    <!-- Выбор даты -->
+                    <DatePicker Grid.Row="0"
+                                Grid.Column="1"
+                                Width="150"
+                                SelectedDate="{Binding Date}"
+                                HorizontalAlignment="Left"/>
+
+                    <!-- ====== Поле: Врач ====== -->
+                    <TextBlock Text="Врач:"
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Margin="0,10,0,0"/>
+                  
+                    <!-- внизу в комбо что показываем пользователю -->
+                    <!-- значение, которое сохраняем -->
+                    <!-- значение, куда сохраняем -->
+                    <ComboBox x:Name="DoctorBox"
+                              Grid.Row="1"
+                              Grid.Column="1"
+                              Margin="5,10,5,0"
+                              DisplayMemberPath="FullName"               
+                              SelectedValuePath="DoctorId"
+                              SelectedValue="{Binding DoctorId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <!-- ====== Поле: Пациент ====== -->
+                        <TextBlock Text="Пациент:"
+                               Grid.Row="2"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Margin="0,10,0,0"/>
+                        <ComboBox x:Name="PatientBox"
+                              Grid.Row="2"
+                              Grid.Column="1"
+                              Margin="5,10,5,0"
+                              DisplayMemberPath="FullName"
+                              SelectedValuePath="PatientId"
+                              SelectedValue="{Binding PatientId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <!-- ====== Поле: Заметки ====== -->
+                        <TextBlock Text="Заметки:"
+                               Grid.Row="3"
+                               Grid.Column="0"
+                               VerticalAlignment="Top"
+                               Margin="0,10,0,0"/>
+                        <TextBox Text="{Binding Notes}"
+                             Grid.Row="3"
+                             Grid.Column="1"
+                             Margin="5,10,5,0"
+                             Height="60"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True"/>
+                </Grid>
+
+                <!-- Кнопки управления -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0,15,0,0">
+
+                    <!-- Добавить новый приём -->
+                    <Button Content="Добавить"
+                            Width="100"
+                            Margin="5"
+                            Click="Add_Click"/>
+
+                    <!-- Сохранить изменения -->
+                    <Button Content="Сохранить"
+                            Width="100"
+                            Margin="5"
+                            Click="Save_Click"/>
+
+                    <!-- Удалить выбранный приём -->
+                    <Button Content="Удалить"
+                            Width="100"
+                            Margin="5"
+                            Click="Delete_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>
