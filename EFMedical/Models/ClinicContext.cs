@@ -14,6 +14,9 @@ namespace EFMedical.Models
         // Таблица приёмов
         public DbSet<Appointment> Appointments { get; set; }
 
+        // Таблица пользователей 
+        public DbSet<User> Users { get; set; }
+
         // Настройка подключения к базе данных
         // Здесь используется LocalDB (локальная база SQL Server)
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

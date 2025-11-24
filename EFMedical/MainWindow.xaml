@@ -42,6 +42,7 @@
 
                     <!-- Кнопка перехода к списку врачей -->
                     <Button Content="Врачи"
+                            x:Name="ButtonDoctor"
                             Click="BtnDoctors_Click"
                             Height="40" Margin="0,10,0,0" FontSize="16"/>
 
